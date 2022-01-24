@@ -5,22 +5,20 @@ const drawContainer = document.querySelector('.drawContainer');
 let heightWidth = 64;
 
 
-//Create a function that makes the drawing display
+//Create a function that makes the grid to draw on.
 function createDisplay(heightWidth) {
-    
+    //Start a loop: Create "heightWidth" number of rows, (Start a loop: fill each column with "heightWidth" columns.))
+    let rCounter = 0;
+    while (rCounter < heightWidth) {
+        const row = document.createElement('div');
+        //Give each row a class to adjust its CSS properties
+        row.setAttribute('class', 'row');
+        drawContainer.appendChild(row);
 
-//Start a loop: Create "heightWidth" number of rows, (Start a loop: fill each column with "heightWidth" columns.))
-let rCounter = 0;
-while (rCounter < heightWidth) {
-    const row = document.createElement('div');
-    //Give each column a class which gives it the CSS style Display:flex
-    row.setAttribute('class', 'row');
-    drawContainer.appendChild(row);
-
-    rCounter++;
-} 
-
-const rows = document.querySelectorAll('.row');
+        rCounter++;
+    } 
+    //creates a number of divs in each row element equal to heightWidth
+    const rows = document.querySelectorAll('.row');
     rows.forEach((div) => {
         for (let cCounter = 0; cCounter < heightWidth; cCounter++){
             const column = document.createElement('div');
@@ -29,9 +27,13 @@ const rows = document.querySelectorAll('.row');
         };
     });
 
+    //Here is some test code for changing colors of the divs.
+    const pixels = document.querySelectorAll('.column');
+    pixels.forEach((div) => {
+        div.addEventListener('mouseover', function(e) {
+            e.target.style.background = 'blue';
+        });
+    });
+
+
 }
-
-
-     //So that the columns are actually next to each other
-
-    //    - Give each column div a class so that it can be selected with querySelectorAll, and then have a function to change it's color applied to it.

@@ -1,8 +1,30 @@
 * {
     border: 1px solid blue;
-    margin: 2px;
-    padding: 2px;
+    margin: 1px;
+    padding: 1px;
 }
-.row {
+
+.drawContainer, .row {
     display: flex;
+}
+
+.row, .column {
+    flex-grow: 1;
+}
+
+.drawContainer {
+    height: 800px;
+    width: 800px;
+    flex-direction: column;
+}
+
+.row {
+
+    margin: 0px;
+    padding: 0px;
+    border: 0px;
+}
+
+.column {
+
 }
