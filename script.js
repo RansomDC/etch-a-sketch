@@ -1,9 +1,16 @@
 
 const drawContainer = document.querySelector('.drawContainer');
+const resetButton = document.querySelector('.reset');
+const rainbowButton = document.querySelector('.rainbow');
+resetButton.addEventListener('click', () => resetBoard(heightWidth));
+rainbowButton.addEventListener('click', () => rainbowBoard(heightWidth));
 
-//Set the default number of row and columns to "density"
+
+//Set the default number of row and columns to "heighWidth"
 let heightWidth = 64;
 
+createDisplay(heightWidth);
+giveColorChangeProperty('rgb(0, 0, 0)');
 
 //Create a function that makes the grid to draw on.
 function createDisplay(heightWidth) {
@@ -27,13 +34,57 @@ function createDisplay(heightWidth) {
         };
     });
 
-    //Here is some test code for changing colors of the divs.
-    const pixels = document.querySelectorAll('.column');
-    pixels.forEach((div) => {
+}
+
+//Applies a hover event listener to a selection of divs with a given class
+//name which changes the div's color.
+function giveColorChangeProperty (color){
+    const columns = document.querySelectorAll('.column');
+    columns.forEach((div) => {
         div.addEventListener('mouseover', function(e) {
-            e.target.style.background = 'blue';
+            e.target.style.background = color;
         });
     });
-
-
 }
+
+
+
+//removes all of the .row elements and the .column with them.
+function eraseBoard() {
+    const disposal = document.querySelectorAll('.row');
+    disposal.forEach((div) => div.remove());
+}
+
+//removes the .row elements, and then repopulates with new ones.
+function resetBoard(heightWidth) {
+    eraseBoard();
+    createDisplay(heightWidth);
+    giveColorChangeProperty('black');
+}
+
+function rainbowBoard(heightWidth) {
+    eraseBoard();
+    createDisplay(heightWidth);
+    giveRainbowProperty();
+}
+
+function giveRainbowProperty() {
+    function random(inputNumberVariable) {
+        return Math.floor(Math.random()*inputNumberVariable);
+    }
+ 
+   
+    const columns = document.querySelectorAll('.column');
+    columns.forEach((div) => {
+        let R = random(255);
+        let G = random(255);
+        let B = random(255);
+        let color = ("rgb(" + R + ", " + B + ", " + G + ")");
+        div.addEventListener('mouseover', function(e) {
+            e.target.style.background = color;
+        });
+    });
+}
+
+
+

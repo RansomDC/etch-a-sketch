@@ -1,11 +1,13 @@
-* {
+/* {
     border: 1px solid blue;
     margin: 1px;
     padding: 1px;
 }
+*/
 
 .drawContainer, .row {
     display: flex;
+    border: 5px solid black;
 }
 
 .row, .column {
