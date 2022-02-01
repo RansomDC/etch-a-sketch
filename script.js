@@ -2,17 +2,31 @@
 const drawContainer = document.querySelector('.drawContainer');
 const resetButton = document.querySelector('.reset');
 const rainbowButton = document.querySelector('.rainbow');
-const shadeButton = document.querySelector('.shade')
+const shadeButton = document.querySelector('.shade');
+const input = document.querySelector('#hWInput');
+const sizeChoice = document.querySelector('.sizeChoice');
+const warning = document.createElement('p');
 resetButton.addEventListener('click', () => resetBoard(heightWidth));
 rainbowButton.addEventListener('click', () => rainbowBoard(heightWidth));
 shadeButton.addEventListener('click', () => shadeBoard(heightWidth));
 
 
-//Set the default number of row and columns to "heighWidth"
-let heightWidth = 16;
+//Set the default number of row and columns to 16
+document.getElementById('hWInput').defaultValue = "16";
+let heightWidth = hWInput.value;
+
+
+input.addEventListener('input', updateBoard);
+
 
 createDisplay(heightWidth);
 giveColorChangeProperty('rgb(0, 0, 0)');
+
+
+function updateBoard(e) {
+    heightWidth = hWInput.value;
+    resetBoard(heightWidth);
+}
 
 //Create a function that makes the grid to draw on.
 function createDisplay(heightWidth) {
