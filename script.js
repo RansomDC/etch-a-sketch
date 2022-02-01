@@ -14,22 +14,30 @@ shadeButton.addEventListener('click', () => shadeBoard(heightWidth));
 //Set the default number of row and columns to 16
 document.getElementById('hWInput').defaultValue = "16";
 let heightWidth = hWInput.value;
-
-
 input.addEventListener('input', updateBoard);
 
 
-createDisplay(heightWidth);
-giveColorChangeProperty('rgb(0, 0, 0)');
+resetBoard(heightWidth);
 
 
+//updates the board with the value input by the user.
 function updateBoard(e) {
     heightWidth = hWInput.value;
     resetBoard(heightWidth);
 }
 
-//Create a function that makes the grid to draw on.
+//A function that makes the grid to draw on.
 function createDisplay(heightWidth) {
+    sizeChoice.appendChild(warning);
+    
+    if(heightWidth > 100) {
+        warning.textContent = "You must select a number less than or equal to 100";
+        heightWidth = 100;
+    } else if (heightWidth < 1) {
+        warning.textContent = "You must select a number greater than zero!";
+        heightWidth = 1;
+    }
+
     //Start a loop: Create "heightWidth" number of rows, (Start a loop: fill each column with "heightWidth" columns.))
     let rCounter = 0;
     while (rCounter < heightWidth) {
@@ -40,6 +48,7 @@ function createDisplay(heightWidth) {
 
         rCounter++;
     } 
+
     //creates a number of divs in each row element equal to heightWidth
     const rows = document.querySelectorAll('.row');
     rows.forEach((div) => {
@@ -73,6 +82,7 @@ function eraseBoard() {
 
 //removes the .row elements, and then repopulates with new ones.
 function resetBoard(heightWidth) {
+    warning.textContent = "";
     eraseBoard();
     createDisplay(heightWidth);
     giveColorChangeProperty('black');
@@ -80,6 +90,7 @@ function resetBoard(heightWidth) {
 
 //resets the board, and gives it the rainbowBoard property
 function rainbowBoard(heightWidth) {
+    warning.textContent = "";
     eraseBoard();
     createDisplay(heightWidth);
     giveRainbowProperty();
@@ -87,6 +98,7 @@ function rainbowBoard(heightWidth) {
 
 //resets the board, and gives it the shadeBoard property
 function shadeBoard(heightWidth) {
+    warning.textContent = "";
     eraseBoard();
     createDisplay(heightWidth);
     giveShadeProperty();
@@ -139,25 +151,3 @@ function giveShadeProperty() {
     });
 
 }
-
-
-//if (opacity < 1) {
-//    color = ("rgb(0, 0, 0, " + opacity + ")");
-//    opacity += 0.2;
-//    e.target.style.background = color;
-//}
-
-
-//function giveShadeProperty() {
-//    let opacity = 0.1;
-//    const columns = document.querySelectorAll('.column');
-//    columns.forEach((div) => {
-//        let color = ("rgb(0, 0, 0, " + opacity + ")");
-//        div.addEventListener('mouseover', function(e) {
-//            e.target.style.background = color;
-//            opacity += 0.1;
-//            giveShadeProperty();
-//        });
-//    });
-//
-//}

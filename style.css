@@ -1,13 +1,17 @@
-/* {
-    border: 1px solid blue;
-    margin: 1px;
-    padding: 1px;
+body{
+    background-color: rgb(77, 35, 22);
 }
-*/
 
 .drawContainer, .row {
     display: flex;
     border: 5px solid black;
+    background-color: rgb(165, 165, 165);
+}
+
+.UIcontainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .row, .column {
@@ -20,13 +24,31 @@
     flex-direction: column;
 }
 
-.row {
+.buttons {
+    margin: 20px;
+    display: flex;
+    justify-content: space-evenly;
+    width: 800px;
+}
 
+.button {
+    background-color: black;
+    color: white;
+    padding: 20px;
+    font-weight: bold;
+    border-radius: 10%;
+    border: none;
+
+    font-size: 24px;
+}
+
+.row {
     margin: 0px;
     padding: 0px;
     border: 0px;
 }
 
-.column {
-
+label, p{
+    color: white;
 }
+
