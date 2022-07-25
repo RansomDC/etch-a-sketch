@@ -1,20 +1,39 @@
 1/21/2022
-Starting a project to make an "etch-a-sketch" that draws when you hover your mouse over the pixels provided. Here are the requirements of the project:
 
-1. Create a webpage with a 16x16 grid
-2. Create the divs using JavaScript
-3. Set up a "hover" effect so that the grid divs change color when your mouse passes over them. leaving a trail through the grid (where the trail is made up of "pixels" that are your divs)
-4. Add a button to the top of the screen which will clear the current grid and send the user a popup asking for the number of squares per side for the new grid.
-    a. The new grid should be generated int he same total space as before (e.g. 960px wide) so that you've got a new sketch pad.
-    b. The limit for size should be 100 "pixels"
-5. Optional:
-    a. Make is so that instead of chaning color from black to white (for example), have each pass through with the mouse change it to a completely random RGB value.
-    b. Also have it simply add 10% of opacity to the block. so that 10 passes makes the square completely black
+# Overview
+This project was created as a practice project to build coding experience, especially working with CSS and JavaScript.
+
+It is a simple program for drawing in a HTML grid by changing the colors of the divs that make up said grid. 
+
+### How to use this program  
+Simply move your mouse over the square in the center of the page. There are several different options for changing the color. The default is simply to change the color from white/gray to black. Another options is to change a hovered box to a random color when it is hovered over for the first time. Last is to add 20% opacity of the color black to the box every time.  
+This last option was easily the most difficult to code and took some time. Here is a clip of the code I used for that process for quick reference.
 
 
-    Here's some pseudocode that I wrote to start with:
+        //Creates a function that adds 10% opacity to a div when it is hovered over.
+        //increasing the opacity each time it is hovered.
+        function giveShadeProperty() {
+            const opacityChange = ["rgba(0, 0, 0, 0)", "rgba(0, 0, 0, 0.2)", "rgba(0, 0, 0, 0.4)", "rgba(0, 0, 0, 0.6)", "rgba(0, 0, 0, 0.8)", "rgba(0, 0, 0, 1)"];
+            const columns = document.querySelectorAll('.column');
+            columns.forEach((div) => {
+                div.addEventListener('mouseover', function(e) {
 
-    1. Set the default number of columns and rows to "density"
-    2. (Start a loop: Create "density" number of columbs, (Start a loop: fill each column with "density" rows.) )
-        - Give each column a class which gives it the CSS style Display:flex (So that the rows are actually next to each other
-        - Give each row div a class so that it can be selected with querySelectorAll, and then have a function to change it's color applied to it.
+                    if (window.getComputedStyle(e.target).backgroundColor === opacityChange[0]) {
+                        e.target.style.background = opacityChange[1];
+                    } else if (window.getComputedStyle(e.target).backgroundColor === opacityChange[1]) {
+                        e.target.style.background = opacityChange[2];
+                    } else if (window.getComputedStyle(e.target).backgroundColor === opacityChange[2]) {
+                        e.target.style.background = opacityChange[3];
+                    } else if (window.getComputedStyle(e.target).backgroundColor === opacityChange[3]) {
+                        e.target.style.background = opacityChange[4];
+                    } else if (window.getComputedStyle(e.target).backgroundColor === opacityChange[4]) {
+                        e.target.style.background = opacityChange[5];
+                    } else;
+
+                    //console.log(window.getComputedStyle(e.target).backgroundColor);
+
+                });
+            });
+
+        }
+
